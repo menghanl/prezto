@@ -76,7 +76,7 @@ function prompt_tintack_setup {
   # PROMPT="${_prompt_tintack_colors[3]}%n%f@${_prompt_tintack_colors[2]}%m%f ${_prompt_tintack_colors[5]}%~%f "'${git_info:+${(e)git_info[prompt]}}'"$ "
   PROMPT="
 %* ${_prompt_tintack_colors[1]}%~%f"'$git_info[prompt]'"
-➤  "
+➤ "
 }
 
 prompt_tintack_setup "$@"
