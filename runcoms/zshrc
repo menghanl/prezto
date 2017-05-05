@@ -11,3 +11,44 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+export EDITOR=vim
+export TERM=xterm-256color
+
+# for go
+export GOPATH=$HOME/go
+export PATH=$HOME/bin:$HOME/protoc:$GOPATH/bin:$PATH
+
+# linuxbrew paths
+export PATH="/usr/local/google/home/menghanl/.linuxbrew/bin:$PATH"
+export MANPATH="/usr/local/google/home/menghanl/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="/usr/local/google/home/menghanl/.linuxbrew/share/info:$INFOPATH"
+
+git() {
+  merge_in_git5=false
+  if [[ $1 == "merge" ]]; then
+    git5_root_dir=$PWD
+    while [[ -n "$git5_root_dir" ]]; do
+      if [[ -d "$git5_root_dir/.git5_specs" ]]; then
+        merge_in_git5=true
+        break
+      fi
+      git5_root_dir=${git5_root_dir%/*}
+    done
+  fi
+
+  if [[ $merge_in_git5 == "true" ]]; then
+    cat << EOF
+Use git5 merge, not git merge. git merge does not understand how
+to merge the READONLY link and it can corrupt your branch, so stay
+away from it. Type "unset -f git" to remove this warning.
+EOF
+  else
+    /usr/bin/env git "$@"
+  fi
+}
+
+alias q="exit"
+alias go="grc go"
+
+
