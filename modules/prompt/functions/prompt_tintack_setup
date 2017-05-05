@@ -47,8 +47,14 @@ function prompt_tintack_setup {
 
   zstyle ':prezto:module:git:info:ahead' format " %A↑"
   zstyle ':prezto:module:git:info:behind' format " %B↓"
+  zstyle ':prezto:module:git:info:action' format "%f✖:%s"
+  zstyle ':prezto:module:git:info:action:cherry-pick' format "cherry-pick"
+  zstyle ':prezto:module:git:info:action:merge' format "merge"
+  zstyle ':prezto:module:git:info:action:rebase' format "rebase"
+  zstyle ':prezto:module:git:info:action:rebase-interactive' format "rebase-i"
+  zstyle ':prezto:module:git:info:action:rebase-merge' format "rebase-m"
 
-  zstyle ':prezto:module:git:info:keys' format 'prompt' '|%C%m%a%b%D%u%d%A%B'
+  zstyle ':prezto:module:git:info:keys' format 'prompt' '|%C%m%a%b%D%u%d%A%B%s%f'
 
   # zstyle ':prezto:module:git:info:added' format "added "
   # zstyle ':prezto:module:git:info:clean' format "clean "
