@@ -50,10 +50,16 @@ EOF
 }
 
 alias q="exit"
-alias go="grc go"
 alias c="cd"
-alias ls="exa"
 alias dlgit="git"
+
+if type "grc" > /dev/null; then
+  alias go="grc go"
+fi
+
+if type "exa" > /dev/null; then
+  alias ls="exa"
+fi
 
 if [[ -a /etc/bash_completion.d/g4d ]]; then
   source /etc/bash_completion.d/g4d
