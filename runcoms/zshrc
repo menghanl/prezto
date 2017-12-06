@@ -51,5 +51,10 @@ EOF
 
 alias q="exit"
 alias go="grc go"
+alias c="cd"
+alias ls="exa"
+alias dlgit="git"
 
-
+if [[ -a /etc/bash_completion.d/g4d ]]; then
+  source /etc/bash_completion.d/g4d
+fi

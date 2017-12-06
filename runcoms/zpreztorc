@@ -63,6 +63,8 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 # Git
 #
 
+# Disable git alias.
+zstyle ':prezto:module:git:alias' skip 'yes'
 # Ignore submodules when they are 'dirty', 'untracked', 'all', or 'none'.
 # zstyle ':prezto:module:git:status:ignore' submodules 'all'
 
@@ -132,6 +134,10 @@ zstyle ':prezto:module:prompt' theme 'tintack'
 #
 # Syntax Highlighting
 #
+
+# Otherwise, cursor disapears when moving back along the command.
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[cursor]=underline
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
