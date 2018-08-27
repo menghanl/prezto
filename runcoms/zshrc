@@ -13,6 +13,7 @@ fi
 # Customize to your needs...
 
 export VISUAL=vim
+# export VISUAL="emacsclient -t"
 export EDITOR="$VISUAL"
 export TERM=xterm-256color
 
@@ -49,9 +50,25 @@ EOF
   fi
 }
 
+# Execute new command with newline.
+# turn off ZLE bracketed paste in dumb term
+# otherwise turn on ZLE bracketed-paste-magic
+if [[ $TERM == dumb ]]; then
+    unset zle_bracketed_paste
+else
+    autoload -Uz bracketed-paste-magic
+    zle -N bracketed-paste bracketed-paste-magic
+fi
+
 alias q="exit"
 alias c="cd"
 alias dlgit="git"
+alias g="git"
+alias h="hub"
+alias '?'="type -a"
+alias b="blaze"
+alias bb="blaze build"
+alias bt="blaze test"
 
 if type "grc" > /dev/null; then
   alias go="grc go"
@@ -64,3 +81,17 @@ fi
 if [[ -a /etc/bash_completion.d/g4d ]]; then
   source /etc/bash_completion.d/g4d
 fi
+if [[ -a $HOME/.cargo/env ]]; then
+  # Add rust to PATH
+  source $HOME/.cargo/env
+fi
+
+# ag ignores blaze-* directories
+export FZF_DEFAULT_COMMAND='rg --files'
+
+unalias e
+e() { emacsclient -q -c "$@" & }
+alias ec="emacsclient"
+
+bindkey '^x^x' edit-command-line
+
